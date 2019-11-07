@@ -3,37 +3,39 @@ import {
   Sprite,
 } from './const/aliases';
 
+import Terrain from './Terrain';
+import toIso from './helpers/toIso';
+
 import { TILE_SIZE_CARTESIAN } from './const/app';
+import { TILES, TILES_OFFSET } from './const/world';
 
 export default class World {
   constructor(textures) {
     this.container = new ParticleContainer();
+    this.terrains = {
+      grass: new Terrain(textures['grass_stroke.png'], {x: 0, y: 0}),
+      wall: new Terrain(textures['wall_stroke.png'], {x: 0, y: -64}),
+    };
 
-    this.build(textures);
+    this.build();
   }
 
-  build(textures) {
-    const tileMap = [
-      ['wall_stroke.png', 'wall_stroke.png', 'wall_stroke.png', 'wall_stroke.png', 'wall_stroke.png', 'wall_stroke.png'],
-      ['wall_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'wall_stroke.png'],
-      ['wall_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'wall_stroke.png'],
-      ['wall_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'wall_stroke.png'],
-      ['wall_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'grass_stroke.png', 'wall_stroke.png'],
-      ['wall_stroke.png', 'wall_stroke.png', 'wall_stroke.png', 'wall_stroke.png', 'wall_stroke.png', 'wall_stroke.png'],
-    ];
-
-    for (let i = 0; i < tileMap.length; i++) {
+  build() {
+    for (let i = 0; i < TILES.length; i++) {
       for (let j = 0; j < 6; j++) {
-        const tile = new Sprite(textures[tileMap[i][j]]);
-        const cartX = j * TILE_SIZE_CARTESIAN + 300;
-        const cartY = i * TILE_SIZE_CARTESIAN - 100;
-        tile.x = cartX - cartY;
-        tile.y = (cartX + cartY) / 2;
-        if (tileMap[i][j] === 'wall_stroke.png') {
-          tile.y -= TILE_SIZE_CARTESIAN;
-        }
-        this.container.addChild(tile);
+        this.placeTile(
+          this.terrains[TILES[i][j]],
+          j * TILE_SIZE_CARTESIAN + TILES_OFFSET.x,
+          i * TILE_SIZE_CARTESIAN + TILES_OFFSET.y
+        );
       }
     }
+  }
+
+  placeTile(terrain, cartX, cartY) {
+    const tile = new Sprite(terrain.texture);
+    const isoPos = toIso(cartX, cartY);
+    tile.position.set(isoPos.x + terrain.offset.x, isoPos.y + terrain.offset.y);
+    this.container.addChild(tile);
   }
 }
