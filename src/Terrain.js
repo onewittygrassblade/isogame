@@ -1,6 +1,7 @@
-export default class Terrain {
+import Drawable from './Drawable';
+
+export default class Terrain extends Drawable {
   constructor(texture, offset) {
-    this.texture = texture;
-    this.offset = offset;
+    super(texture, offset);
   }
 }

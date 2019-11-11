@@ -1,8 +1,16 @@
 {"frames": {
 
+"ball.png":
+{
+	"frame": {"x":0,"y":0,"w":50,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
+	"sourceSize": {"w":50,"h":50}
+},
 "grass.png":
 {
-	"frame": {"x":0,"y":0,"w":128,"h":64},
+	"frame": {"x":0,"y":50,"w":128,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":64},
@@ -10,7 +18,7 @@
 },
 "grass_stroke.png":
 {
-	"frame": {"x":0,"y":64,"w":128,"h":64},
+	"frame": {"x":0,"y":114,"w":128,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":64},
@@ -18,7 +26,7 @@
 },
 "grid_selected.png":
 {
-	"frame": {"x":0,"y":128,"w":128,"h":64},
+	"frame": {"x":0,"y":178,"w":128,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":64},
@@ -26,7 +34,7 @@
 },
 "grid_selected_stroke.png":
 {
-	"frame": {"x":0,"y":192,"w":128,"h":64},
+	"frame": {"x":0,"y":242,"w":128,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":64},
@@ -34,7 +42,7 @@
 },
 "grid_unselected.png":
 {
-	"frame": {"x":0,"y":256,"w":128,"h":64},
+	"frame": {"x":0,"y":306,"w":128,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":64},
@@ -42,7 +50,7 @@
 },
 "grid_unselected_stroke.png":
 {
-	"frame": {"x":0,"y":320,"w":128,"h":64},
+	"frame": {"x":0,"y":370,"w":128,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":64},
@@ -50,7 +58,7 @@
 },
 "wall.png":
 {
-	"frame": {"x":0,"y":384,"w":128,"h":128},
+	"frame": {"x":0,"y":434,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
@@ -58,7 +66,7 @@
 },
 "wall_stroke.png":
 {
-	"frame": {"x":0,"y":512,"w":128,"h":128},
+	"frame": {"x":0,"y":562,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
@@ -69,8 +77,8 @@
 	"version": "1.0",
 	"image": "isotiles.png",
 	"format": "RGBA8888",
-	"size": {"w":128,"h":640},
+	"size": {"w":128,"h":690},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7b29ee2a58a0a3b0132177e98c7a3679:5dd3a21381633a486af6b00c88f09a13:58405e4f0362fbc231ea1440769d0842$"
+	"smartupdate": "$TexturePacker:SmartUpdate:cfeabdfc5d6138c89d6b7b0693bd826a:ebaf94948c762d7e08af9768451f558a:58405e4f0362fbc231ea1440769d0842$"
 }
 }

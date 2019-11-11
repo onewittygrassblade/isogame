@@ -181,6 +181,21 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">ball.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,13,25,25</rect>
+                <key>scale9Paddings</key>
+                <rect>13,13,25,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">grass.png</key>
             <key type="filename">grid_selected.png</key>
             <key type="filename">grid_unselected.png</key>
@@ -256,6 +271,7 @@
             <filename>grid_selected_stroke.png</filename>
             <filename>grid_unselected_stroke.png</filename>
             <filename>wall_stroke.png</filename>
+            <filename>ball.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
