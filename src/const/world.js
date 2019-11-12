@@ -9,4 +9,4 @@ export const TILES = [
 export const TILES_OFFSET = {
   x: 300,
   y: -100,
-}
+};

@@ -42,10 +42,10 @@ export default class App extends Application {
     this.stage.addChild(world.container);
   }
 
-  run() {
-    // PIXI.Ticker uses a ratio that is 1 if FPS = 60, 2 if FPS = 2, etc.
-    this.ticker.add((fpsRatio) => {
-      //
-    });
-  }
+  // run() {
+  //   PIXI.Ticker uses a ratio that is 1 if FPS = 60, 2 if FPS = 2, etc.
+  //   this.ticker.add((fpsRatio) => {
+  //
+  //   });
+  // }
 }

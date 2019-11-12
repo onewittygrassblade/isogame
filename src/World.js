@@ -14,10 +14,10 @@ export default class World {
   constructor(textures) {
     this.container = new ParticleContainer();
     this.drawables = {
-      ball: new Drawable(textures['ball.png'], {x: 39, y: -8}),
+      ball: new Drawable(textures['ball.png'], { x: 39, y: -8 }),
       terrains: {
-        grass: new Terrain(textures['grass_stroke.png'], {x: 0, y: 0}),
-        wall: new Terrain(textures['wall_stroke.png'], {x: 0, y: -64}),
+        grass: new Terrain(textures['grass_stroke.png'], { x: 0, y: 0 }),
+        wall: new Terrain(textures['wall_stroke.png'], { x: 0, y: -64 }),
       },
     };
 
@@ -30,7 +30,11 @@ export default class World {
     for (let i = 0; i < TILES.length; i++) {
       for (let j = 0; j < TILES[i].length; j++) {
         const terrain = this.drawables.terrains[TILES[i][j]];
-        this.renderDrawable(terrain, j * TILE_SIZE_CARTESIAN + TILES_OFFSET.x, i * TILE_SIZE_CARTESIAN + TILES_OFFSET.y);
+        this.renderDrawable(
+          terrain,
+          j * TILE_SIZE_CARTESIAN + TILES_OFFSET.x,
+          i * TILE_SIZE_CARTESIAN + TILES_OFFSET.y
+        );
       }
     }
   }
