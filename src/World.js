@@ -1,81 +1,38 @@
-import {
-  ParticleContainer,
-  Sprite,
-} from './const/aliases';
+import { ParticleContainer } from './const/aliases';
 
 import Drawable from './Drawable';
-import Terrain from './Terrain';
-import toIso from './helpers/toIso';
+import Entity from './Entity';
 
-import { TILE_SIZE_CARTESIAN } from './const/app';
-import { TILES, TILES_OFFSET } from './const/world';
+import { TILES, TILES_SIZE } from './const/world';
 
 export default class World {
   constructor(textures) {
-    this.container = new ParticleContainer();
+    this.container = new ParticleContainer({ sortableChildren: true });
     this.drawables = {
-      ball: new Drawable(textures['ball.png'], { x: 39, y: -8 }),
+      ball: new Drawable(textures['ball.png'], { x: 39, y: -8 }, null),
       terrains: {
-        grass: new Terrain(textures['grass_stroke.png'], { x: 0, y: 0 }),
-        wall: new Terrain(textures['wall_stroke.png'], { x: 0, y: -64 }),
+        grass: new Drawable(textures['grass_stroke.png'], { x: 0, y: 0 }, true),
+        wall: new Drawable(textures['wall_stroke.png'], { x: 0, y: -64 }, false),
       },
     };
 
     this.renderTerrains();
     this.renderBall();
-    this.orderSprites();
+    this.container.sortChildren();
   }
 
   renderTerrains() {
-    for (let i = 0; i < TILES.length; i++) {
-      for (let j = 0; j < TILES[i].length; j++) {
-        const terrain = this.drawables.terrains[TILES[i][j]];
-        this.renderDrawable(
-          terrain,
-          j * TILE_SIZE_CARTESIAN + TILES_OFFSET.x,
-          i * TILE_SIZE_CARTESIAN + TILES_OFFSET.y
-        );
+    for (let i = 0; i < TILES_SIZE.x; i++) {
+      for (let j = 0; j < TILES_SIZE.y; j++) {
+        const drawable = this.drawables.terrains[TILES[i][j]];
+        const terrain = new Entity(drawable, i, j);
+        this.container.addChild(terrain.sprite);
       }
     }
   }
 
   renderBall() {
-    this.ball = this.renderDrawable(
-      this.drawables.ball,
-      2 * TILE_SIZE_CARTESIAN + TILES_OFFSET.x,
-      2 * TILE_SIZE_CARTESIAN + TILES_OFFSET.y
-    );
-  }
-
-  renderDrawable(drawable, cartX, cartY) {
-    const sprite = new Sprite(drawable.texture);
-    const isoPos = toIso(cartX, cartY);
-    sprite.position.set(isoPos.x + drawable.offset.x, isoPos.y + drawable.offset.y);
-    sprite.cartX = cartX;
-    sprite.cartY = cartY;
-    this.container.addChild(sprite);
-    return sprite;
-  }
-
-  orderSprites() {
-    this.container.children.sort((a, b) => {
-      if (a.cartX < b.cartX) {
-        return -1;
-      }
-      if (a.cartX > b.cartX) {
-        return 1;
-      }
-      return 0;
-    });
-
-    this.container.children.sort((a, b) => {
-      if (a.cartY < b.cartY) {
-        return -1;
-      }
-      if (a.cartY > b.cartY) {
-        return 1;
-      }
-      return 0;
-    });
+    this.ball = new Entity(this.drawables.ball, 2, 2);
+    this.container.addChild(this.ball.sprite);
   }
 }
