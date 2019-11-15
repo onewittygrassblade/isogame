@@ -36,16 +36,32 @@ export default class App extends Application {
       centerCanvas(this.view);
     });
 
+    // event management
+    this.events = [];
+    this.view.addEventListener(
+      'mousedown',
+      (e) => this.events.push(e),
+      false
+    );
+
     // scene
     const { textures } = resources['images/isotiles.json'];
-    const world = new World(textures);
-    this.stage.addChild(world.container);
+    this.world = new World(textures);
+    this.stage.addChild(this.world.container);
   }
 
-  // run() {
-  //   PIXI.Ticker uses a ratio that is 1 if FPS = 60, 2 if FPS = 2, etc.
-  //   this.ticker.add((fpsRatio) => {
-  //
-  //   });
-  // }
+  run() {
+    // PIXI.Ticker uses a ratio that is 1 if FPS = 60, 2 if FPS = 2, etc.
+    this.ticker.add((fpsRatio) => {
+      this.processInput();
+      this.world.update((fpsRatio * 1000) / 60); // time per frame = 1000 / 60 ms
+    });
+  }
+
+  processInput() {
+    while (this.events.length) {
+      this.world.handleEvent(this.events[0]);
+      this.events.shift();
+    }
+  }
 }

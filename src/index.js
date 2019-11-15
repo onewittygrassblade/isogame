@@ -4,5 +4,5 @@ App.loadAssets()
   .then(() => {
     const app = new App();
     app.setup();
-    // app.run();
+    app.run();
   });
