@@ -37,7 +37,7 @@ export default class World {
   }
 
   renderBall() {
-    this.ball = new Ball(this.drawables.ball, 2, 2);
+    this.ball = new Ball(this.drawables.ball, 3, 3);
     this.container.addChild(this.ball.sprite);
   }
 
