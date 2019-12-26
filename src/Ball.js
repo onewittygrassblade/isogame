@@ -1,12 +1,9 @@
-import Entity from './Entity';
+import Movable from './Movable';
 
-export default class Ball extends Entity {
-  move(worlPos) {
-    this.updateCoords(worlPos);
-    this.sprite.zIndex += 0.5;
-  }
+export default class Ball extends Movable {
+  constructor(drawable, worldX, worldY) {
+    super(drawable, worldX, worldY);
 
-  update(dt) {
-
+    this.speed = 0.1;
   }
 }

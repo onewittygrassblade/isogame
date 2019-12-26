@@ -1,11 +1,14 @@
+import EasyStar from 'easystarjs';
+
 import { Container } from './const/aliases';
+import { TILES, TILES_SIZE } from './const/world';
 
 import Drawable from './Drawable';
 import Entity from './Entity';
 import Ball from './Ball';
-import { isoToWorld } from './helpers/coords';
 
-import { TILES, TILES_SIZE } from './const/world';
+import PubSub from './helpers/PubSub';
+import { isoToWorld } from './helpers/coords';
 
 export default class World {
   constructor(textures) {
@@ -21,6 +24,9 @@ export default class World {
     this.createTiles();
     this.renderBall();
     this.container.sortChildren();
+
+    this.configurePubSub();
+    this.configurePathFinder();
   }
 
   createTiles() {
@@ -28,7 +34,7 @@ export default class World {
     for (let i = 0; i < TILES_SIZE.x; i++) {
       this.tiles.push([]);
       for (let j = 0; j < TILES_SIZE.y; j++) {
-        const drawable = this.drawables.terrains[TILES[i][j]];
+        const drawable = this.drawables.terrains[TILES[j][i]];
         const terrain = new Entity(drawable, i, j);
         this.tiles[i].push(terrain);
         this.container.addChild(terrain.sprite);
@@ -37,8 +43,36 @@ export default class World {
   }
 
   renderBall() {
-    this.ball = new Ball(this.drawables.ball, 3, 3);
+    this.ball = new Ball(this.drawables.ball, 2, 3);
     this.container.addChild(this.ball.sprite);
+  }
+
+  configurePubSub() {
+    PubSub.subscribe('directionXChange', () => {
+      this.sortElements('setZIndexOnY');
+    });
+
+    PubSub.subscribe('directionYChange', () => {
+      this.sortElements('setZIndexOnX');
+    });
+  }
+
+  sortElements(sortingFunc) {
+    for (let i = 0; i < TILES_SIZE.x; i++) {
+      for (let j = 0; j < TILES_SIZE.y; j++) {
+        this.tiles[i][j][sortingFunc]();
+      }
+    }
+    this.ball[sortingFunc](0.5);
+    this.container.sortChildren();
+  }
+
+  configurePathFinder() {
+    this.easystar = new EasyStar.js(); // eslint-disable-line new-cap
+    this.easystar.setGrid(TILES);
+    this.easystar.setAcceptableTiles(['grass']);
+    // this.easystar.enableDiagonals(); // depth sorting currently broken for diagonals
+    // this.easystar.disableCornerCutting(); // unnecessary without diagonals
   }
 
   handleEvent(e) {
@@ -50,27 +84,46 @@ export default class World {
   moveBall(isoPos) {
     const worldPos = isoToWorld(isoPos);
     worldPos.x -= 1;
-    if (!this.isWithinWorldBounds(worldPos)) return;
 
-    const destination = this.getTerrainAtWorldPos(worldPos);
-    if (destination.drawable.isWalkable) {
-      this.ball.move(worldPos);
-      this.container.sortChildren();
+    if (!this.isWithinWorldBounds(worldPos)) {
+      return;
     }
+
+    if (worldPos.x === this.ball.worldPos.x && worldPos.y === this.ball.worldPos.y) {
+      return;
+    }
+
+    const destinationTile = this.tiles[worldPos.x][worldPos.y];
+    if (!destinationTile.drawable.isWalkable) {
+      return;
+    }
+
+    this.easystar.findPath(
+      this.ball.worldPos.x,
+      this.ball.worldPos.y,
+      worldPos.x,
+      worldPos.y,
+      (path) => {
+        if (path) {
+          this.ball.setPath(path);
+        }
+      }
+    );
+    this.easystar.calculate();
   }
 
+  /* eslint-disable class-methods-use-this */
   isWithinWorldBounds(worldPos) {
     return worldPos.x > -1
       && worldPos.x < TILES_SIZE.x
       && worldPos.y > -1
       && worldPos.y < TILES_SIZE.y;
   }
-
-  getTerrainAtWorldPos(worldPos) {
-    return this.tiles[worldPos.x][worldPos.y];
-  }
+  /* eslint-enable class-methods-use-this */
 
   update(dt) {
-    this.ball.update(dt);
+    if (this.ball.isMoving) {
+      this.ball.update(dt);
+    }
   }
 }

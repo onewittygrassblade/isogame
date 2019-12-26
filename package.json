@@ -11,9 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/onewittygrassblade/isogame.git"
   },
+  "keywords": [
+    "PixiJS"
+  ],
   "author": "OneWittyGrassBlade",
   "license": "MIT",
   "dependencies": {
+    "easystarjs": "^0.4.3",
     "pixi.js": "^5.2.0"
   },
   "devDependencies": {

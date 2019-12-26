@@ -1,10 +1,10 @@
 export const TILES = [
   ['wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall'],
   ['wall', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'wall'],
+  ['wall', 'grass', 'grass', 'wall', 'grass', 'grass', 'grass', 'wall'],
+  ['wall', 'grass', 'grass', 'grass', 'wall', 'grass', 'grass', 'wall'],
   ['wall', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'wall'],
-  ['wall', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'wall'],
-  ['wall', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'wall'],
-  ['wall', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'wall'],
+  ['wall', 'grass', 'wall', 'grass', 'grass', 'wall', 'grass', 'wall'],
   ['wall', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'wall'],
   ['wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall'],
 ];
