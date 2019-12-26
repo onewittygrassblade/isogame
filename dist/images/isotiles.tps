@@ -197,8 +197,6 @@
                 <false/>
             </struct>
             <key type="filename">grass.png</key>
-            <key type="filename">grid_selected.png</key>
-            <key type="filename">grid_unselected.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -210,23 +208,6 @@
                 <rect>23,13,45,26</rect>
                 <key>scale9Paddings</key>
                 <rect>23,13,45,26</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">grass_stroke.png</key>
-            <key type="filename">grid_selected_stroke.png</key>
-            <key type="filename">grid_unselected_stroke.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>32,16,64,32</rect>
-                <key>scale9Paddings</key>
-                <rect>32,16,64,32</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -245,32 +226,11 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">wall_stroke.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>32,32,64,64</rect>
-                <key>scale9Paddings</key>
-                <rect>32,32,64,64</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
         </map>
         <key>fileList</key>
         <array>
             <filename>grass.png</filename>
-            <filename>grid_selected.png</filename>
-            <filename>grid_unselected.png</filename>
             <filename>wall.png</filename>
-            <filename>grass_stroke.png</filename>
-            <filename>grid_selected_stroke.png</filename>
-            <filename>grid_unselected_stroke.png</filename>
-            <filename>wall_stroke.png</filename>
             <filename>ball.png</filename>
         </array>
         <key>ignoreFileList</key>

@@ -16,8 +16,8 @@ export default class World {
     this.drawables = {
       ball: new Drawable(textures['ball.png'], { x: 39, y: -8 }, null),
       terrains: {
-        grass: new Drawable(textures['grass_stroke.png'], { x: 0, y: 0 }, true),
-        wall: new Drawable(textures['wall_stroke.png'], { x: 0, y: -64 }, false),
+        grass: new Drawable(textures['grass.png'], { x: 0, y: 0 }, true),
+        wall: new Drawable(textures['wall.png'], { x: 0, y: -32 }, false),
       },
     };
 
