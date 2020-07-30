@@ -18,18 +18,18 @@
   "license": "MIT",
   "dependencies": {
     "easystarjs": "^0.4.3",
-    "pixi.js": "^5.2.4"
+    "pixi.js": "^5.3.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.10",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^5.0.9"
   }
 }

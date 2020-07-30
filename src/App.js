@@ -27,8 +27,8 @@ export default class App extends Application {
     super({ width: RENDERER_WIDTH, height: RENDERER_HEIGHT, backgroundColor: 0xababab });
   }
 
-  setup() {
-    // view
+  boot() {
+    // Set view
     document.getElementById('root').appendChild(this.view);
 
     centerCanvas(this.view);
@@ -36,7 +36,18 @@ export default class App extends Application {
       centerCanvas(this.view);
     });
 
-    // event management
+    // Load assets
+    loader
+      .add('images/isotiles.json')
+      .load(this.handleLoadComplete.bind(this));
+
+    loader.onError.add(() => {
+      console.err('Loading error'); // eslint-disable-line no-console
+    }); // called once per errored file
+  }
+
+  handleLoadComplete() {
+    // Create event collectors
     this.events = [];
     this.view.addEventListener(
       'mousedown',
@@ -44,13 +55,12 @@ export default class App extends Application {
       false
     );
 
-    // scene
+    // Create scene
     const { textures } = resources['images/isotiles.json'];
     this.world = new World(textures);
     this.stage.addChild(this.world.container);
-  }
 
-  run() {
+    // Set game loop
     // PIXI.Ticker uses a ratio that is 1 if FPS = 60, 2 if FPS = 2, etc.
     this.ticker.add((fpsRatio) => {
       this.processInput();
