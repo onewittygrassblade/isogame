@@ -1,6 +1,6 @@
-import { Sprite } from './const/aliases';
-import { TILES_SIZE } from './const/world';
+import { Sprite } from 'pixi.js';
 
+import { TILES_SIZE } from './const/world';
 import { worldToIso } from './helpers/coords';
 
 export default class Entity {

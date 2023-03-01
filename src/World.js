@@ -1,12 +1,11 @@
 import EasyStar from 'easystarjs';
-
-import { Container } from './const/aliases';
-import { TILES, TILES_SIZE } from './const/world';
+import { Container } from 'pixi.js';
 
 import Drawable from './Drawable';
 import Entity from './Entity';
 import Ball from './Ball';
 
+import { TILES, TILES_SIZE } from './const/world';
 import PubSub from './helpers/PubSub';
 import { isoToWorld } from './helpers/coords';
 
